@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: external-dns
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: external-dns
+  template:
+    metadata:
+      labels:
+        app: external-dns
+    spec:
+      serviceAccountName: external-dns
+      containers:
+      - name: external-dns
+        image: k8s.gcr.io/external-dns/external-dns:latest
+
+provider: akamai
+sources:
+  - service
+  - ingress
+txtOwnerId: mrambell
+domainFilters: [rambs.de]
+zoneNameFilters: [rambs.de]
+logLevel: debug
+akamai:
+  host: <akamai API host>
+  clientToken: <Akamai client token>
+  accessToken: <Akamai access token>
+  clientSecret: <Akamai client secret>

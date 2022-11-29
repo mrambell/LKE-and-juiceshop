@@ -1,0 +1,11 @@
+app:
+  juiceshop:
+    image:
+      name: bkimminich/juice-shop
+      tag: latest
+      pullPolicy: IfNotPresent
+    replicas: 2
+    ingress:
+      mail: mail@domain.com
+      external_dns:
+        enabled: False

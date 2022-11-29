@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "app.name" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ include "app.name" . }}
+  replicas: {{ .Values.app.juiceshop.replicas }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "app.name" . }}
+    spec:
+      containers:
+      - name: juiceshop
+        image: {{ .Values.app.juiceshop.image.name }}:{{ .Values.app.juiceshop.image.tag }}
+        imagePullPolicy: {{ .Values.app.juiceshop.image.pullPolicy }}
+        ports:
+        - containerPort: 3000

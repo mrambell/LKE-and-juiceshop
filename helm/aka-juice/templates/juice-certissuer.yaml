@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: {{ include "app.name" . }}
+spec:
+  acme:
+    email: {{ .Values.app.juiceshop.ingress.mail }}
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: {{ include "app.name" . }}-letsencrypt-secret-prod
+    solvers:
+    - http01:
+        ingress:
+          class: nginx

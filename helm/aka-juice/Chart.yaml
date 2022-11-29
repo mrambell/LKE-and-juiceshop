@@ -1,0 +1,6 @@
+apiVersion: v2
+name: aka-juice
+description: JuiceShop k8s
+type: application
+version: 0.0.3
+appVersion: "0.0.3"

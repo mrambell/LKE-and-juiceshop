@@ -1,0 +1,12 @@
+app:
+  juiceshop:
+    image:
+      name: bkimminich/juice-shop
+      tag: latest
+      pullPolicy: IfNotPresent
+    replicas: 2
+    ingress:
+      url: not.configured.yet
+      mail: mail@domain.com
+      external_dns:
+        enabled: False #provided by ingress, better time to deploy
